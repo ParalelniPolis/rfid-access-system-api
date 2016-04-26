@@ -1,0 +1,36 @@
+
+	<div class="content">
+		<div class="wrap">
+			<div class="form">
+				<h2>Login</h2>
+				<form id="login-form" method="POST" action="/login">
+					{{#if errors}}
+					<div class="form-errors">
+						{{#each errors}}
+						<p>{{.}}</p>
+						{{/each}}
+					</div>
+					{{/if}}
+					<div class="form-row{{#if errors.username}} error{{/if}}">
+						<div class="form-label">
+							<label for="login-username">Username</label>
+						</div>
+						<div class="form-field">
+							<input id="login-username" class="form-input" type="text" name="username" value="{{postData.username}}" autofocus>
+						</div>
+					</div>
+					<div class="form-row{{#if errors.password}} error{{/if}}">
+						<div class="form-label">
+							<label for="login-password">Password</label>
+						</div>
+						<div class="form-field">
+							<input id="login-password" class="form-input" type="password" name="password" value="{{postData.password}}">
+						</div>
+					</div>
+					<div class="form-buttons">
+						<input class="btn" type="submit" value="Login">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>

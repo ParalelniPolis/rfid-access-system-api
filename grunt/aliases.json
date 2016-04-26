@@ -1,0 +1,26 @@
+{
+	"default": [
+		"install",
+		"test"
+	],
+	"install": [
+		"build"
+	],
+	"build": [
+		"newer:cssmin",
+		"newer:uglify",
+		"newer:concat",
+		"newer:copy"
+	],
+	"test": [
+		"test:integration",
+		"test:code-style"
+	],
+	"test:code-style": [
+		"jscs"
+	],
+	"test:integration": [
+		"env:test",
+		"mochaTest:integration"
+	]
+}

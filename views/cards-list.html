@@ -1,0 +1,43 @@
+
+{{> nav}}
+
+	<div id="content-sections">
+		<div class="content">
+			<div class="wrap">
+				<h2>Cards</h2>
+				{{#if withAccessTo}}
+				<p class="list-note">Viewing cards with access to <strong>{{withAccessTo}}</strong>.</p>
+				{{/if}}
+				{{#if cards}}
+				<table class="list cards">
+					<thead>
+						<tr>
+							<th class="list-header">Identifier</th>
+							<th class="list-header">Contact Name</th>
+							<th class="list-header">Contact Email</th>
+							<th class="list-header">Access</th>
+							<th class="list-header"></th>
+						</tr>
+					</thead>
+					<tbody>
+					{{#each cards}}
+						<tr class="list-item">
+							<td class="list-item-data identifier">{{identifier}}</td>
+							<td class="list-item-data">{{contact_name}}</td>
+							<td class="list-item-data">{{contact_email}}</td>
+							<td class="list-item-data">{{#if accesses}}{{#each accesses}}{{.}}<br>{{/each}}{{else}}-{{/if}}</td>
+							<td class="list-item-data"><a href="/manage/grant-access?card_identifier={{identifier}}">Edit</a></td>
+						</tr>
+					{{/each}}
+					</tbody>
+				</table>
+				{{else}}
+					{{#if withAccessTo}}
+				<p>No cards have access to this lock.</p>
+					{{else}}
+				<p>There aren't any cards yet.</p>
+					{{/if}}
+				{{/if}}
+			</div>
+		</div>
+	</div>

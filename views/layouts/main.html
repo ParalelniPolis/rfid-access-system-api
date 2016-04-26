@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta http-equiv="x-ua-compatible" content="IE=Edge"> 
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>{{#title}}{{.}} | {{/title}}{{site.name}}</title>
+	<link href="/css/all.min.css" rel="stylesheet">
+</head>
+<body class="{{bodyClasses}}">
+
+	<div id="header">
+		<div class="wrap">
+			<div id="header-logo"><a id="header-logo-link" href="/">{{site.name}}</a></div>
+			<div id="header-slogan">{{site.slogan}}</div>
+			<div id="header-nav">
+				{{#if isLoggedIn}}
+				<a class="header-nav-link" href="/logout">Logout</a>
+				{{else}}
+				<a class="header-nav-link" href="/login">Login</a>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+
+	<div id="content">
+{{{ body }}}
+	</div>
+
+	<div id="footer">
+		<div class="wrap">
+		</div>
+	</div>
+
+	{{#isEnv "development"}}
+	<script src="/js/all.js"></script>
+	{{else}}
+	<script src="/js/all.min.js"></script>
+	{{/isEnv}}
+
+</body>
+</html>

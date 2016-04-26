@@ -1,0 +1,32 @@
+
+{{> nav}}
+
+	<div id="content-sections">
+		<div class="content">
+			<div class="wrap">
+				<h2>Failed Access Logs</h2>
+				{{#if logs}}
+				<table class="list">
+					<thead>
+						<tr>
+							<th class="list-header">Lock</th>
+							<th class="list-header">Card</th>
+							<th class="list-header">Date</th>
+						</tr>
+					</thead>
+					<tbody>
+					{{#each logs}}
+						<tr class="list-item">
+							<td class="list-item-data">{{lock_name}}</td>
+							<td class="list-item-data">{{card_identifier}}</td>
+							<td class="list-item-data">{{#isoDate created_at}}{{/isoDate}}</td>
+						</tr>
+					{{/each}}
+					</tbody>
+				</table>
+				{{else}}
+				<p>There aren't any logs yet.</p>
+				{{/if}}
+			</div>
+		</div>
+	</div>

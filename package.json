@@ -1,0 +1,58 @@
+{
+  "name": "rfid-access-system-api",
+  "version": "1.0.0",
+  "description": "Web API for RFID access system at Paralelni Polis.",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "postinstall": "grunt build",
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ParalelniPolis/rfid-access-system-api.git"
+  },
+  "author": {
+    "name": "Charles Hill",
+    "email": "chill@degreesofzero.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ParalelniPolis/rfid-access-system-api/issues"
+  },
+  "readmeFilename": "README.md",
+  "homepage": "https://github.com/ParalelniPolis/rfid-access-system-api#readme",
+  "dependencies": {
+    "async": "2.0.0-rc.4",
+    "bcrypt": "0.8.6",
+    "bookshelf": "0.9.4",
+    "chai": "3.5.0",
+    "cookie-parser": "1.4.1",
+    "express": "4.13.4",
+    "express-handlebars": "3.0.0",
+    "express-mysql-session": "1.0.0",
+    "express-session": "1.13.0",
+    "grunt": "1.0.1",
+    "grunt-contrib-concat": "1.0.1",
+    "grunt-contrib-copy": "1.0.0",
+    "grunt-contrib-cssmin": "1.0.1",
+    "grunt-contrib-uglify": "1.0.1",
+    "grunt-contrib-watch": "1.0.0",
+    "grunt-env": "0.4.4",
+    "grunt-jscs": "2.8.0",
+    "grunt-mocha-test": "0.12.7",
+    "grunt-newer": "1.2.0",
+    "grunt-nodemon": "0.4.2",
+    "inquirer": "1.0.2",
+    "knex": "0.10.0",
+    "load-grunt-config": "0.19.2",
+    "mocha": "2.4.5",
+    "mysql": "2.10.2",
+    "open-sans-fontface": "https://github.com/chill117/open-sans/archive/1.4.2.tar.gz",
+    "seedrandom": "2.4.2",
+    "serve-static": "1.10.2",
+    "time-grunt": "1.3.0",
+    "underscore": "1.8.3"
+  },
+  "devDependencies": {}
+}

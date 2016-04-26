@@ -1,0 +1,100 @@
+
+{{> nav}}
+
+	<div id="content-sections">
+		<div class="content">
+			<div class="wrap">
+				<h2>Grant Access</h2>
+				<div class="form">
+					<form id="grant-access-form" method="POST" action="/manage/grant-access">
+						{{#if errors}}
+						<div class="form-errors">
+							{{#each errors}}
+							<p>{{.}}</p>
+							{{/each}}
+						</div>
+						{{/if}}
+						{{#if existingCard}}
+						<div class="form-row">
+							<div class="form-label">
+								<label for="grant-access-identifier-existing-card">Card Identifier:</label>
+							</div>
+							<div class="form-field">
+								<input class="form-input" id="grant-access-identifier-from-existing-cards" name="identifier[existing]" value="{{existingCard.identifier}}" type="text" readonly>
+							</div>
+						</div>
+						{{else}}
+						<fieldset class="form-group">
+							<legend class="form-group-header">Card Identifier</legend>
+							<div class="form-row">
+								<div class="form-label">
+									<label for="grant-access-identifier-from-logs">From logs:</label>
+								</div>
+								<div class="form-field">
+									<select id="grant-access-identifier-from-logs" name="identifier[from_log]">
+										<option></option>
+									{{#each fromLogs}}
+										<option value="{{card_identifier}}">[ <span class="timestamp">{{#isoDate created_at}}{{/isoDate}}</span> ] <span class="card-identifier">{{card_identifier}}</span></option>
+									{{/each}}
+									</select>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-label">
+									<label for="grant-access-identifier-from-existing-cards">From existing cards:</label>
+								</div>
+								<div class="form-field">
+									<select id="grant-access-identifier-from-existing-cards" name="identifier[from_existing]">
+										<option></option>
+									{{#each fromExistingCards}}
+										<option value="{{identifier}}">{{identifier}}</option>
+									{{/each}}
+									</select>
+								</div>
+							</div>
+						</fieldset>
+						{{/if}}
+						<fieldset class="form-group">
+							<legend class="form-group-header">Contact Info</legend>
+							<div class="form-row">
+								<div class="form-label">
+									<label for="grant-access-contact-name">Name:</label>
+								</div>
+								<div class="form-field">
+									<input class="form-input" id="grant-access-contact-name" name="contact_name" value="{{#if existingCard}}{{existingCard.contact_name}}{{/if}}" type="text">
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-label">
+									<label for="grant-access-contact-email">Email:</label>
+								</div>
+								<div class="form-field">
+									<input class="form-input" id="grant-access-contact-email" name="contact_email" value="{{#if existingCard}}{{existingCard.contact_email}}{{/if}}" type="text">
+								</div>
+							</div>
+						</fieldset>
+						<fieldset class="form-group">
+							<legend class="form-group-header">Locks</legend>
+							<p class="form-note">Check the box next to a lock to grant access.</p>
+							{{#if locks}}
+								{{#each locks}}
+							<div class="form-row">
+								<input class="form-input" id="grant-access-lock-{{id}}" name="can_access_locks[]" value="{{id}}" type="checkbox"{{#if can_access}} checked{{/if}}> <label for="grant-access-lock-{{id}}">{{name}}</label>
+							</div>
+								{{/each}}
+							<div class="form-row form-select-all">
+								<input class="form-input" id="grant-access-lock-select-all" type="checkbox"> <label for="grant-access-lock-select-all"> Select / deselect all</label>
+							</div>
+							{{else}}
+							<p>There are no locks yet.</p>
+							{{/if}}
+						</fieldset>
+						<div class="form-buttons">
+							<input class="btn" type="submit" value="Save">
+							<a class="btn cancel" href="/manage" onclick="history.go(-1);">Cancel</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>

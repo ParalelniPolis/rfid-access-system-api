@@ -1,0 +1,32 @@
+
+{{> nav}}
+
+	<div id="content-sections">
+		<div class="content">
+			<div class="wrap">
+				<h2>Locks</h2>
+				{{#if locks}}
+				<table class="list">
+					<thead>
+						<tr>
+							<th class="list-header">Name</th>
+							<th class="list-header">Description</th>
+							<th class="list-header"></th>
+						</tr>
+					</thead>
+					<tbody>
+					{{#each locks}}
+						<tr class="list-item">
+							<td class="list-item-data">{{name}}</td>
+							<td class="list-item-data">{{description}}</td>
+							<td class="list-item-data"><a href="/manage/cards?with_access_to={{name}}">view cards with access</a></td>
+						</tr>
+					{{/each}}
+					</tbody>
+				</table>
+				{{else}}
+				<p>There aren't any locks yet.</p>
+				{{/if}}
+			</div>
+		</div>
+	</div>
