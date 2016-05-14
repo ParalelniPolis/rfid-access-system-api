@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "postinstall": "grunt build",
-    "test": "grunt test"
+    "test": "grunt test",
+    "start": "grunt nodemon"
   },
   "repository": {
     "type": "git",
