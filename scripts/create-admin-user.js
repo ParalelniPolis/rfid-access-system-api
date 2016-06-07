@@ -23,7 +23,7 @@ inquirer.prompt([
 		validate: validate.required
 	}
 
-], function(answers) {
+]).then(function(answers) {
 
 	var UserModel = require('../models/User');
 
@@ -37,4 +37,6 @@ inquirer.prompt([
 		console.log('Success! A new admin user has been created.');
 		process.exit(0);
 	});
+}).catch(function(error) {
+	console.log(error);
 });
