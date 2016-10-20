@@ -2,6 +2,8 @@
 
 Web API for [RFID access system](https://github.com/ParalelniPolis/rfid-locks) at [Paralelni Polis](https://www.paralelnipolis.cz/).
 
+[![Build Status](https://travis-ci.org/ParalelniPolis/rfid-access-system-api.svg?branch=master)](https://travis-ci.org/ParalelniPolis/rfid-access-system-api) [![Status of Dependencies](https://david-dm.org/ParalelniPolis/rfid-access-system-api.svg)](https://david-dm.org/ParalelniPolis/rfid-access-system-api)
+
 
 ## Dependencies
 

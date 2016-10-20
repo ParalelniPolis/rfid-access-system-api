@@ -1,0 +1,20 @@
+before_script:
+  - "mysql -e 'drop database if exists prase_test; create database prase_test;'"
+
+env:
+  - CXX=g++-4.8 PRASE_DB_HOST="127.0.0.1" PRASE_DB_PORT=3306 PRASE_DB_USER="root" PRASE_DB_PASS="" PRASE_DB_NAME="prase_test"
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+
+language: node_js
+node_js:
+  - "6"
+  - "4"
+
+before_install: npm install -g grunt-cli
+install: npm install

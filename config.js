@@ -11,7 +11,7 @@ var config = module.exports = {
 			host: process.env.PRASE_DB_HOST || '127.0.0.1',
 			port: parseInt(process.env.PRASE_DB_PORT || 3306),
 			user: process.env.PRASE_DB_USER || 'prase_local',
-			password: process.env.PRASE_DB_PASS || 'password',
+			password: typeof process.env.PRASE_DB_PASS !== 'undefined' ? process.env.PRASE_DB_PASS : 'password',
 			database: process.env.PRASE_DB_NAME || 'prase_local',
 			timezone: process.env.PRASE_DB_TIMEZONE || 'UTC'
 		}
