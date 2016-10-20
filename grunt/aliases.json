@@ -17,7 +17,7 @@
 		"test:code-style"
 	],
 	"test:code-style": [
-		"jscs"
+		"eslint"
 	],
 	"test:integration": [
 		"env:test",

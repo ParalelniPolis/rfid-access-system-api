@@ -121,7 +121,7 @@ var Model = module.exports = db.Model.extend({
 			data = _.pick(data, allowedFields.update);
 			data.id = id;
 
-			var instance = Model.forge(data);
+			instance = Model.forge(data);
 
 			instance.save().then(function() {
 				cb(null, instance.toJSON());

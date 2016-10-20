@@ -73,22 +73,12 @@ _.each([
 			});
 		});
 
-		var cardLockAccess;
-
 		before(function(done) {
 
 			app.models.CardLockAccess.create({
 				lock_id: lock.id,
 				card_id: card.id
-			}, function(error, result) {
-
-				if (error) {
-					return done(error);
-				}
-
-				cardLockAccess = result;
-				done();
-			});
+			}, done);
 		});
 
 		var otherLock;

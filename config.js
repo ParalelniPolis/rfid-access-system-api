@@ -61,5 +61,4 @@ var config = module.exports = {
 
 if (!config.sessions.secret) {
 	throw new Error('config.sessions.secret is required');
-	process.exit(1);
 }

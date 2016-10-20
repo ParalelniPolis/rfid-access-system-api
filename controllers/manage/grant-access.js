@@ -138,7 +138,7 @@ module.exports = function(app) {
 				return cb(error);
 			}
 
-			var createOrUpdate = !!card ? 
+			var createOrUpdate = card ? 
 				app.models.Card.update.bind(app.models.Card, card.id) :
 				app.models.Card.create;
 

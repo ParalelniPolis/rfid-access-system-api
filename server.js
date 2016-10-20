@@ -13,10 +13,10 @@ var app = module.exports = express();
 
 app.env = process.env.NODE_ENV || 'development';
 
-var lib = app.lib = require('./lib');
-var config = app.config = require('./config');
-var db = app.db = require('./db');
-var models = app.models = require('./models');
+app.lib = require('./lib');
+app.config = require('./config');
+app.db = require('./db');
+app.models = require('./models');
 
 var onReadyQueue = [];
 
@@ -33,7 +33,7 @@ async.parallel([
 
 	function prepareDatabase(next) {
 
-		async.eachSeries(models, function(model, nextModel) {
+		async.eachSeries(app.models, function(model, nextModel) {
 			model.setUpTable(nextModel);
 		}, next);
 	},
@@ -82,9 +82,9 @@ async.parallel([
 		next();
 	});
 
-	var server = app.server = app.listen(config.port, config.host);
+	app.server = app.listen(app.config.port, app.config.host);
 
-	console.log('Server listening on', config.host + ':' + config.port);
+	console.log('Server listening on', app.config.host + ':' + app.config.port);
 
 	app.isReady = true;
 

@@ -9,14 +9,16 @@ module.exports = function(app) {
 
 	app.get('/api/v1/access', function(req, res, next) {
 
+		var error;
+
 		if (!req.query.lock) {
-			var error = new Error('Missing required query parameter: "lock"');
+			error = new Error('Missing required query parameter: "lock"');
 			error.status = 400;
 			return next(error);
 		}
 
 		if (!req.query.card) {
-			var error = new Error('Missing required query parameter: "card"');
+			error = new Error('Missing required query parameter: "card"');
 			error.status = 400;
 			return next(error);
 		}
