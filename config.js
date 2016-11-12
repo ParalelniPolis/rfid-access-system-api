@@ -1,5 +1,10 @@
 'use strict';
 
+require('dotenv').config({
+  silent: true,
+  path: '../'
+})
+
 var config = module.exports = {
 
 	host: process.env.PRASE_HOST || 'localhost',
