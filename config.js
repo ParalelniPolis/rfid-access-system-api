@@ -19,7 +19,7 @@ var config = module.exports = {
 
 	site: {
 		name: 'p.r.a.s.e.',
-		slogan: 'RFID access system at Paralelni Polis'
+		slogan: 'Polis RFID access system extended'
 	},
 
 	passwords: {

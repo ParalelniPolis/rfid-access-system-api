@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config({silent: true})
+
 var util = require('./lib/util');
 
 process.on('uncaughtException', function(error) {
