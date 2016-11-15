@@ -100,6 +100,10 @@ module.exports = function(app) {
 
 	function getExistingCard(identifier, cb) {
 
+		if (!identifier) {
+			return cb(null, null);
+		}
+
 		var query = app.models.Card.query();
 		query.select();
 		query.where('identifier', identifier);
@@ -120,6 +124,10 @@ module.exports = function(app) {
 	}
 
 	function getAccesses(identifier, cb) {
+
+		if (!identifier) {
+			return cb(null, []);
+		}
 
 		var query = app.models.CardLockAccess.query();
 		query.select('card_lock_access.*');
