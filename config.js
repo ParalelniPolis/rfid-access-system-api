@@ -1,9 +1,9 @@
 'use strict';
 
 require('dotenv').config({
-  silent: true,
-  path: '../'
-})
+	silent: true,
+	path: '../'
+});
 
 var config = module.exports = {
 
