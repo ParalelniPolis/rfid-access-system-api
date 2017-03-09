@@ -2,8 +2,6 @@
 
 module.exports = function(app) {
 
-	var async = require('async');
-
 	app.get('/:lang/LockAuthorize/:lock/:card', function(req, res, next) {
 
 		checkAccess(req.params.lock, req.params.card, req, res, next);
