@@ -17,4 +17,4 @@ node_js:
   - "4"
 
 before_install: npm install -g grunt-cli
-install: npm install
+script: cd app && npm install && npm test

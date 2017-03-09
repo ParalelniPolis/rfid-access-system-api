@@ -2,7 +2,7 @@
 
 Web API for [RFID access system](https://github.com/ParalelniPolis/rfid-locks) at [Paralelni Polis](https://www.paralelnipolis.cz/).
 
-[![Build Status](https://travis-ci.org/ParalelniPolis/rfid-access-system-api.svg?branch=master)](https://travis-ci.org/ParalelniPolis/rfid-access-system-api) [![Status of Dependencies](https://david-dm.org/ParalelniPolis/rfid-access-system-api.svg)](https://david-dm.org/ParalelniPolis/rfid-access-system-api)
+[![Build Status](https://travis-ci.org/ParalelniPolis/rfid-access-system-api.svg?branch=master)](https://travis-ci.org/ParalelniPolis/rfid-access-system-api)
 
 
 ## Requirements
@@ -42,8 +42,8 @@ grunt build
 You will need to create a MySQL database and user:
 ```mysql
 CREATE DATABASE IF NOT EXISTS prase_local;
-GRANT USAGE ON * . * TO  'prase_local'@'localhost' IDENTIFIED BY  'password' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
-GRANT ALL PRIVILEGES ON  `prase_local` . * TO  'prase_local'@'localhost';
+GRANT USAGE ON *.* TO  'prase_local'@'localhost' IDENTIFIED BY 'password' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
+GRANT ALL PRIVILEGES ON `prase_local`.* TO 'prase_local'@'localhost';
 ```
 
 ### Configuration
@@ -69,22 +69,13 @@ npm test
 
 ## Production
 
-The production instance of the PRASE system is running on a [raspberry pi](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) in Paralelni Polis. It has a static IP address on the Local Area Network. It is possible to connect to it via SSH.
+The production instance of the PRASE system is running on a [raspberry pi](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) in the Hackerspace of Paralelni Polis. It has a static IP address (192.168.53.114) on the Local Area Network. It is possible to connect to it via SSH, but you must be connected to the Institut wifi network.
 
-References:
-* [Connecting to Raspberry Pi via Ethernet](https://stackoverflow.com/questions/16040128/hook-up-raspberry-pi-via-ethernet-to-laptop-without-router)
-
-The production PRASE web service can be reached at [prase.paralelnipolis.cz](https://prase.paralelnipolis.cz/). But before that will work, you will need to add the following line to your system's hosts file (on unix systems this is `/etc/hosts`):
-```
-10.42.0.19      prase.paralelnipolis.cz
-```
+The production PRASE web service can be reached at [prase.paralelnipolis.cz](https://prase.paralelnipolis.cz/) when you are connected to any wifi in Paralelni Polis. This works because the network at Polis is configured to route this sub-domain to the pi's static IP.
 
 The SSL certificate is self-signed, so you will need to add it to your system's list of trusted certificates if you want to skip error screens.
 
-
-### Deployment
-
-There is a deployment script located at `scripts/deploy.sh`. You need to have root access to the raspberry pi to be able to deploy changes. To deploy to the production instance:
+There is a deployment script which allows updating the web app on the raspberry pi. You need to have root access to the raspberry pi to be able to deploy changes. To deploy to the production instance:
 ```bash
 ./scripts/deploy.sh prod
 ```
