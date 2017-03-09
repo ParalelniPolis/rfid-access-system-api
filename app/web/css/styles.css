@@ -474,6 +474,9 @@ html, body {
 		text-align: center;
 		margin-top: 20px;
 	}
+	.list-extra {
+		margin-top: 20px;
+	}
 	/*  Lists  */
 
 
@@ -507,6 +510,9 @@ html, body {
 		content: ' ';
 		box-shadow: inset -50px 0 50px -25px #f7f7f7;
 		padding-left: 50px;
+	}
+	body.manage #locks-add-form input[name="name"] {
+		max-width: 360px;
 	}
 	/*  Manage  */
 

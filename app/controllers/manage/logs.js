@@ -11,15 +11,12 @@ module.exports = function(app) {
 			layout: 'main'
 		};
 
-		var query = app.db.models.FailureLog.query();
-
-		query.select().orderBy('id', 'desc');
-
-		query.then(function(results) {
-
-			templateData.logs = results;
-			res.render('logs-list', templateData);
-
-		}).catch(next);
+		app.db.models.FailureLog.query()
+			.select()
+			.orderBy('id', 'desc')
+			.then(function(results) {
+				templateData.logs = results;
+				res.render('logs-list', templateData);
+			}).catch(next);
 	});
 };

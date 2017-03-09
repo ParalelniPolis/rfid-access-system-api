@@ -39,7 +39,6 @@ module.exports = BaseModel.extend({
 		this.query()
 			.insert(dataArray)
 			.then(function(results) {
-				console.log(results);
 				cb(null, dataArray);
 			}).catch(cb);
 	},

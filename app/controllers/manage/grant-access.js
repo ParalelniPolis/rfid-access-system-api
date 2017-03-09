@@ -1,9 +1,9 @@
 'use strict';
 
-var _ = require('underscore');
-var async = require('async');
-
 module.exports = function(app) {
+
+	var _ = require('underscore');
+	var async = require('async');
 
 	app.get('/manage/grant-access', app.middleware.requireAuthenticationRedirect, function(req, res, next) {
 
@@ -79,23 +79,23 @@ module.exports = function(app) {
 
 	function getCardsFromFailureLog(cb) {
 
-		var query = app.db.models.FailureLog.query();
-		query.select();
-		query.orderBy('created_at', 'desc');
-		query.limit(20);
-		query.then(function(results) {
-			cb(null, results);
-		}).catch(cb);
+		app.db.models.FailureLog.query()
+			.select()
+			.orderBy('created_at', 'desc')
+			.limit(20)
+			.then(function(results) {
+				cb(null, results);
+			}).catch(cb);
 	}
 
 	function getExistingCards(cb) {
 
-		var query = app.db.models.Card.query();
-		query.select();
-		query.orderBy('identifier', 'desc');
-		query.then(function(results) {
-			cb(null, results);
-		}).catch(cb);
+		app.db.models.Card.query()
+			.select()
+			.orderBy('identifier', 'desc')
+			.then(function(results) {
+				cb(null, results);
+			}).catch(cb);
 	}
 
 	function getExistingCard(identifier, cb) {
@@ -104,23 +104,23 @@ module.exports = function(app) {
 			return cb(null, null);
 		}
 
-		var query = app.db.models.Card.query();
-		query.select();
-		query.where('identifier', identifier);
-		query.limit(1);
-		query.then(function(results) {
-			cb(null, results[0] || null);
-		}).catch(cb);
+		app.db.models.Card.query()
+			.select()
+			.where('identifier', identifier)
+			.limit(1)
+			.then(function(results) {
+				cb(null, results[0] || null);
+			}).catch(cb);
 	}
 
 	function getLocks(cb) {
 
-		var query = app.db.models.Lock.query();
-		query.select();
-		query.orderBy('name', 'asc');
-		query.then(function(results) {
-			cb(null, results);
-		}).catch(cb);
+		app.db.models.Lock.query()
+			.select()
+			.orderBy('name', 'asc')
+			.then(function(results) {
+				cb(null, results);
+			}).catch(cb);
 	}
 
 	function getAccesses(identifier, cb) {
@@ -129,13 +129,13 @@ module.exports = function(app) {
 			return cb(null, []);
 		}
 
-		var query = app.db.models.CardLockAccess.query();
-		query.select('card_lock_access.*');
-		query.leftJoin('cards', 'cards.id', 'card_lock_access.card_id');
-		query.andWhere('cards.identifier', identifier);
-		query.then(function(results) {
-			cb(null, results);
-		}).catch(cb);
+		app.db.models.CardLockAccess.query()
+			.select('card_lock_access.*')
+			.leftJoin('cards', 'cards.id', 'card_lock_access.card_id')
+			.andWhere('cards.identifier', identifier)
+			.then(function(results) {
+				cb(null, results);
+			}).catch(cb);
 	}
 
 	function createOrUpdateCard(data, cb) {
@@ -148,7 +148,7 @@ module.exports = function(app) {
 
 			var createOrUpdate = card ? 
 				app.db.models.Card.update.bind(app.db.models.Card, card.id) :
-				app.db.models.Card.create;
+				app.db.models.Card.create.bind(app.db.models.Card);
 
 			createOrUpdate(data, function(error) {
 
@@ -157,7 +157,6 @@ module.exports = function(app) {
 				}
 
 				getExistingCard(data.identifier, function(error, card) {
-
 					cb(error, data, card);
 				});
 			});
@@ -170,9 +169,12 @@ module.exports = function(app) {
 
 			function clearAccess(next) {
 
-				app.db.models.CardLockAccess.query().del().where('card_id', card.id).then(function() {
-					next();
-				}).catch(next);
+				app.db.models.CardLockAccess.query()
+					.del()
+					.where('card_id', card.id)
+					.then(function() {
+						next();
+					}).catch(next);
 			},
 
 			function addAccess(next) {

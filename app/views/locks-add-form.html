@@ -1,0 +1,33 @@
+
+{{> nav}}
+
+	<div id="content-sections">
+		<div class="content">
+			<div class="wrap">
+				<h2>Add Lock</h2>
+				<div class="form">
+					<form id="locks-add-form" method="POST" action="/manage/locks/add">
+						{{#if errors}}
+						<div class="form-errors">
+							{{#each errors}}
+							<p>{{.}}</p>
+							{{/each}}
+						</div>
+						{{/if}}
+						<div class="form-row">
+							<div class="form-label">
+								<label for="locks-add-name">Name:</label>
+							</div>
+							<div class="form-field">
+								<input class="form-input" id="locks-add-name" name="name" value="{{formData.name}}" type="text" autofocus>
+							</div>
+						</div>
+						<div class="form-buttons">
+							<input class="btn" type="submit" value="Save">
+							<a class="btn cancel" href="/manage/locks">Cancel</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>

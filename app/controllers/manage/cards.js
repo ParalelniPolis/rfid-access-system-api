@@ -1,8 +1,8 @@
 'use strict';
 
-var _ = require('underscore');
-
 module.exports = function(app) {
+
+	var _ = require('underscore');
 
 	// List of cards.
 	app.get('/manage/cards', app.middleware.requireAuthenticationRedirect, function(req, res, next) {
@@ -54,12 +54,12 @@ module.exports = function(app) {
 
 	function getAccesses(cardIds, cb) {
 
-		var query = app.db.models.CardLockAccess.query();
-		query.select('card_lock_access.card_id', 'locks.name AS lock_name');
-		query.where('card_id', 'in', cardIds);
-		query.leftJoin('locks', 'locks.id', 'card_lock_access.lock_id');
-		query.then(function(results) {
-			cb(null, results);
-		}).catch(cb);
+		app.db.models.CardLockAccess.query()
+			.select('card_lock_access.card_id', 'locks.name AS lock_name')
+			.where('card_id', 'in', cardIds)
+			.leftJoin('locks', 'locks.id', 'card_lock_access.lock_id')
+			.then(function(results) {
+				cb(null, results);
+			}).catch(cb);
 	}
 };

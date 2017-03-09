@@ -34,7 +34,7 @@
 									<select id="grant-access-identifier-from-logs" name="identifier[from_log]">
 										<option></option>
 									{{#each fromLogs}}
-										<option value="{{card_identifier}}">[ <span class="timestamp">{{#isoDate created_at}}{{/isoDate}}</span> ] <span class="card-identifier">{{card_identifier}}</span></option>
+										<option value="{{card_identifier}}">[ <span class="timestamp">{{#isoDate created_at}}{{/isoDate}}</span> ] [ <span class="lock-name">{{lock_name}}</span> ] <span class="card-identifier">{{card_identifier}}</span></option>
 									{{/each}}
 									</select>
 								</div>
@@ -82,11 +82,14 @@
 								<input class="form-input" id="grant-access-lock-{{id}}" name="can_access_locks[]" value="{{id}}" type="checkbox"{{#if can_access}} checked{{/if}}> <label for="grant-access-lock-{{id}}">{{name}}</label>
 							</div>
 								{{/each}}
+							<div class="form-row">
+								<a href="/manage/locks/add">Add a new lock</a>
+							</div>
 							<div class="form-row form-select-all">
 								<input class="form-input" id="grant-access-lock-select-all" type="checkbox"> <label for="grant-access-lock-select-all"> Select / deselect all</label>
 							</div>
 							{{else}}
-							<p>There are no locks yet.</p>
+							<p>There are no locks yet. <a href="/manage/locks/add">Add a new lock</a></p>
 							{{/if}}
 						</fieldset>
 						<div class="form-buttons">

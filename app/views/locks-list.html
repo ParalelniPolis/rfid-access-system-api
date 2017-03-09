@@ -12,6 +12,7 @@
 							<th class="list-header">Name</th>
 							<th class="list-header">Description</th>
 							<th class="list-header"></th>
+							<th class="list-header"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -20,6 +21,7 @@
 							<td class="list-item-data">{{name}}</td>
 							<td class="list-item-data">{{description}}</td>
 							<td class="list-item-data"><a href="/manage/cards?with_access_to={{name}}">view cards with access</a></td>
+							<td class="list-item-data"><a href="/manage/locks/remove?id={{id}}" onclick="return confirm('Are you sure you want to remove lock \'{{name}}\'?');">remove</a></td>
 						</tr>
 					{{/each}}
 					</tbody>
@@ -27,6 +29,9 @@
 				{{else}}
 				<p>There aren't any locks yet.</p>
 				{{/if}}
+				<div class="list-extra">
+					<a href="/manage/locks/add">Add new lock</a>
+				</div>
 			</div>
 		</div>
 	</div>

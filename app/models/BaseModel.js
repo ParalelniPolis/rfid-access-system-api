@@ -6,6 +6,7 @@ var db = require('../database');
 
 module.exports = {
 
+	db: db,
 	tableName: null,
 
 	query: function() {

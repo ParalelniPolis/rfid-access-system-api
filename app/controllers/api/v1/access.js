@@ -2,6 +2,8 @@
 
 module.exports = function(app) {
 
+	var async = require('async');
+
 	app.get('/:lang/LockAuthorize/:lock/:card', function(req, res, next) {
 
 		checkAccess(req.params.lock, req.params.card, req, res, next);
@@ -28,36 +30,33 @@ module.exports = function(app) {
 
 	function checkAccess(lockName, cardIdentifier, req, res, next) {
 
-		var query = app.db.models.CardLockAccess.query();
+		app.db.models.CardLockAccess.query()
+			.select('card_lock_access.id')
+			.leftJoin('locks', 'locks.id', 'card_lock_access.lock_id')
+			.leftJoin('cards', 'cards.id', 'card_lock_access.card_id')
+			.where('locks.name', lockName)
+			.andWhere('cards.identifier', cardIdentifier)
+			.limit(1)
+			.then(function(results) {
 
-		query.select('card_lock_access.id');
-		query.leftJoin('locks', 'locks.id', 'card_lock_access.lock_id');
-		query.leftJoin('cards', 'cards.id', 'card_lock_access.card_id');
-		query.where('locks.name', lockName);
-		query.andWhere('cards.identifier', cardIdentifier);
-		query.limit(1);
+				var canAccess = results.length > 0;
 
-		query.then(function(results) {
+				res.json(makeResponseObject(lockName, canAccess));
 
-			var canAccess = results.length > 0;
+				if (!canAccess) {
 
-			if (canAccess) {
-				return res.json(makeResponseObject(lockName, true));
-			}
+					app.db.models.FailureLog.create({
+						lock_name: lockName,
+						card_identifier: cardIdentifier
+					}, function(error) {
 
-			app.db.models.FailureLog.create({
-				lock_name: lockName,
-				card_identifier: cardIdentifier
-			}, function(error) {
-
-				if (error) {
-					util.error(error);
+						if (error) {
+							app.lib.util.error(error);
+						}
+					});
 				}
 
-				res.json(makeResponseObject(lockName, false));
-			});
-
-		}).catch(next);
+			}).catch(next);
 	}
 
 	function makeResponseObject(lockName, canAccess) {

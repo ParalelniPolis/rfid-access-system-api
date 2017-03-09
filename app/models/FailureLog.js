@@ -3,7 +3,7 @@
 var _ = require('underscore');
 var BaseModel = require('./BaseModel');
 
-module.exports = BaseModel.extend({
+var FailureLog = module.exports = BaseModel.extend({
 
 	tableName: 'failure_log',
 
