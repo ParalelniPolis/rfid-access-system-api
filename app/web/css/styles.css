@@ -14,12 +14,13 @@ html, body {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	padding: 0 20px;
 	margin: 0 auto;
 }
 
 	/*  Header  */
 	#header {
-		position: relative;
+		position: absolute;
 		z-index: 40;
 		width: 100%;
 		height: 104px;
@@ -49,7 +50,7 @@ html, body {
 	}
 	#header-nav {
 		position: absolute;
-		right: 0;
+		right: 10px;
 		top: 0;
 		display: inline-block;
 		vertical-align: top;
@@ -83,12 +84,15 @@ html, body {
 	#content {
 		position: relative;
 		width: 100%;
+		height: 100%;
+		min-height: 250px;
 		display: inline-block;
 		vertical-align: top;
-		min-height: 250px;
 		color: #333;
 		background: #eee;
 		overflow: hidden;
+		box-sizing: border-box;
+		padding-top: 104px;
 	}
 	#content-sections {
 		width: 100%;
@@ -104,7 +108,7 @@ html, body {
 			float: left;
 			width: 25%;
 			height: 100%;
-			background: #eee;
+			background: #ddd;
 			box-sizing: border-box;
 			padding: 30px 0;
 		}
@@ -114,14 +118,15 @@ html, body {
 			color: #444;
 			text-align: center;
 			text-decoration: none;
-			box-sizing: border-box;
+			background: #ccc;
 			border-left: 5px solid transparent;
 			border-right: 5px solid transparent;
+			box-sizing: border-box;
 			padding: 20px 0;
 		}
 		.content-nav-item:hover,
 		.content-nav-item.active {
-			background: #ddd;
+			background: #c0c0c0;
 			border-color: #777;
 		}
 		/*  Content Nav  */
@@ -137,6 +142,9 @@ html, body {
 		}
 		.content .wrap {
 			padding: 50px 0;
+		}
+		.content-header {
+			margin-bottom: 30px;
 		}
 		.content h1,
 		.content h2 {
@@ -465,6 +473,9 @@ html, body {
 
 
 	/*  Lists  */
+	.list {
+		margin-top: 20px;
+	}
 	.list-note {
 		font-size: 0.9em;
 		font-style: italic;
@@ -527,6 +538,7 @@ html, body {
 
 	/*  Footer  */
 	#footer {
+		display: none;/* hide for now, because there is nothing in it */
 		width: 100%;
 		color: #aaa;
 		font-size: 0.9em;
@@ -549,3 +561,39 @@ html, body {
 		text-decoration: underline;
 	}
 	/*  Footer  */
+
+
+	@media screen and (max-width: 480px) {
+
+		.content-header,
+		.content h2.content-header {
+			font-size: 2rem;
+		}
+		#content {
+			height: auto;
+			overflow: auto;
+		}
+		#content-nav {
+			float: none;
+			position: relative;
+			width: 100%;
+			height: auto;
+			background: #eee;
+			padding: 0;
+		}
+		.content-nav-item {
+			background: #eee;
+		}
+		.content-nav-item:hover,
+		.content-nav-item.active {
+			background: #ddd;
+		}
+		#content-nav + #content-sections {
+			float: none;
+			width: 100%;
+		}
+		.content .wrap,
+		body.manage .content .wrap {
+			padding: 20px;
+		}
+	}
