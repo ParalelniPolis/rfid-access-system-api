@@ -1,9 +1,6 @@
 'use strict';
 
-require('dotenv').config({
-	silent: true,
-	path: '../'
-});
+require('dotenv').config();
 
 var config = module.exports = {
 
