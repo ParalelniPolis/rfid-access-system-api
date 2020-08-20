@@ -25,7 +25,7 @@
   "homepage": "https://github.com/ParalelniPolis/rfid-access-system-api#readme",
   "dependencies": {
     "async": "2.1.5",
-    "bcrypt": "3.0.6",
+    "bcrypt": "5.0.0",
     "body-parser": "1.19.0",
     "cookie-parser": "1.4.3",
     "dotenv": "4.0.0",
