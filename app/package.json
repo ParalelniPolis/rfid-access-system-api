@@ -39,7 +39,7 @@
     "open-sans-fontface": "https://github.com/chill117/open-sans/archive/1.4.2.tar.gz",
     "seedrandom": "2.4.2",
     "serve-static": "1.14.1",
-    "underscore": "1.8.3"
+    "underscore": "1.12.1"
   },
   "devDependencies": {
     "chai": "3.5.0",
